@@ -4,7 +4,7 @@ format.data = function(data = NULL, data.path = NULL, TRAIT,
                        RSID = "RSID", CHR = "CHR", POS = "POS", 
                        EA = "EA", NEA = "NEA", EAF = NULL, MAF = NULL, 
                        BETA = "BETA", SE = "SE", 
-                       P = "pval", LOG10P = "LOG10P", N = "N"){
+                       P = NULL, LOG10P = NULL, N = "N"){
   if(is.null(data) & is.null(data.path)){stop("please provide gwas summary data or path to gwas summary data")}
   if(is.null(data) & !is.null(data.path)){data = data.table::fread(data.path)}
   data = as.data.frame(data)
