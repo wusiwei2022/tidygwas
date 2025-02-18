@@ -1,4 +1,15 @@
-#' @export
+#' Fast extract a subset of GWAS data
+#' 
+#' Fast extract a subset of the GWAS summary data set in reference to the ID provided.
+#' The data set should be a .txt file separated by tab
+#' 
+#' @param data.path Path to the GWAS summary to extract
+#' @param data.type To clarify whether the GWAS is a .txt file or compressed .txt file
+#' @param extract.by Whether extract by RSID or the Coordinate of variants
+#' @param id.index Column number of RSID in the GWAS summary data 
+#' @param ref.id A vector of RSID to match in the GWAS summary data
+#' @returns A data frame that contains a subset of GWAS summary data
+#' @export extract.data
 extract.data = function(data.path, 
                         data.type = c(".txt", ".txt.gz"), 
                         extract.by = c("ID", "Coord"), 
