@@ -19,7 +19,7 @@
   SE = "SE",
   P = NULL,
   LOG10P = NULL,
-  N = "N"
+  N = NULL
 )
 }
 \description{
