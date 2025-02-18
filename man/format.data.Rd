@@ -17,6 +17,8 @@
   MAF = NULL,
   BETA = "BETA",
   SE = "SE",
+  P = "pval",
+  LOG10P = "LOG10P",
   N = "N"
 )
 }

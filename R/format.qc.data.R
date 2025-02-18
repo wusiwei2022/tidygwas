@@ -3,7 +3,8 @@
 format.data = function(data = NULL, data.path = NULL, TRAIT, 
                        RSID = "RSID", CHR = "CHR", POS = "POS", 
                        EA = "EA", NEA = "NEA", EAF = NULL, MAF = NULL, 
-                       BETA = "BETA", SE = "SE", N = "N"){
+                       BETA = "BETA", SE = "SE", 
+                       P = "pval", LOG10P = "LOG10P", N = "N"){
   if(is.null(data) & is.null(data.path)){stop("please provide gwas summary data or path to gwas summary data")}
   if(is.null(data) & !is.null(data.path)){data = data.table::fread(data.path)}
   data = as.data.frame(data)
@@ -14,8 +15,14 @@ format.data = function(data = NULL, data.path = NULL, TRAIT,
                         nea = data[, NEA],
                         beta = data[, BETA],
                         se = data[, SE])
+  ### Trait name
   std.data = std.data %>% dplyr::mutate(trait = TRAIT, .before = "rsid")
+  ### P value and log10 P value
+  std.data = std.data %>% dplyr::mutate(p = ifelse(!is.null(P), data[, P], NULL))
+  std.data = std.data %>% dplyr::mutate(log10p = ifelse(!is.null(LOG10P), data[, LOG10P], NULL))
+  ### Sample size
   std.data = std.data %>% dplyr::mutate(n = ifelse(!is.null(N), data[, N], NULL))
+  ### EAF and MAF
   std.data = std.data %>% dplyr::mutate(eaf = ifelse(!is.null(EAF), data[, EAF], NULL), .after = nea)
   if(!is.null(MAF)){std.data = std.data %>% dplyr::mutate(maf = data[, MAF], .after = nea)}
   if(is.null(MAF) & !is.null(EAF)){std.data = std.data %>% dplyr::mutate(maf = ifelse(eaf<0.5, eaf, 1-eaf), .after = nea)}
