@@ -9,18 +9,55 @@
   data.path = NULL,
   TRAIT,
   RSID = "RSID",
-  CHR = "CHR",
-  POS = "POS",
-  EA = "EA",
-  NEA = "NEA",
-  EAF = NULL,
-  MAF = NULL,
-  BETA = "BETA",
-  SE = "SE",
-  P = NULL,
-  LOG10P = NULL,
-  N = NULL
+  CHR = NA,
+  POS = NA,
+  EA = NA,
+  NEA = NA,
+  EAF = NA,
+  MAF = NA,
+  BETA = NA,
+  SE = NA,
+  Z = NA,
+  P = NA,
+  LOG10P = NA,
+  N = NA
 )
+}
+\arguments{
+\item{data}{the data frame to be formatted, either data or data.path should be provided}
+
+\item{data.path}{path to the data frame to be formatted, either data or data.path should be provided}
+
+\item{TRAIT}{trait name}
+
+\item{RSID}{the ID column for genetic variants, must be provided}
+
+\item{CHR}{column for variant chromosome}
+
+\item{POS}{column  for variant position}
+
+\item{EA}{column for the effect allele}
+
+\item{NEA}{column for the non-effect allele}
+
+\item{EAF}{column for the effect allele frequency}
+
+\item{MAF}{column for the minor allele frequency. If not available, MAF can be calculated from EAF}
+
+\item{BETA}{column for the beta in regression model}
+
+\item{SE}{column for the standard error of beta in regression model}
+
+\item{Z}{column for the Z statistics in regression model}
+
+\item{P}{column for the P value to test beta = 0}
+
+\item{LOG10P}{column for the log10P to test beta = 0}
+
+\item{N}{column for the sample size in GWAS}
+}
+\value{
+A post-formated data frame
 }
 \description{
 Convert a GWAS Summary data into a standard format for downstream colocalization analysis
