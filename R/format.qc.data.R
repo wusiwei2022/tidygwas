@@ -15,13 +15,16 @@
 #' @param P column for the P value to test beta = 0 
 #' @param LOG10P column for the log10P to test beta = 0 
 #' @param N column for the sample size in GWAS
-#' @return A post-formated data frame
+#' @param NCASE column for the number of cases in GWAS for case-control study
+#' @param NCTRL column for the number of controls in GWAS for case-control study
+#' @return A post-formatted data frame
 #' @export format.data
 format.data = function(data = NULL, data.path = NULL, TRAIT, 
                        RSID = "RSID", CHR = NA, POS = NA, 
                        EA = NA, NEA = NA, EAF = NA, MAF = NA, 
                        BETA = NA, SE = NA, Z = NA,
-                       P = NA, LOG10P = NA, N = NA){
+                       P = NA, LOG10P = NA, 
+                       N = NA, NCASE = NA, NCTRL = NA){
   if(is.null(data) & is.null(data.path)){stop("please provide gwas summary data or path to gwas summary data")}
   if(is.null(data) & !is.null(data.path)){data = data.table::fread(data.path)}
   if(is.na(RSID) | !{RSID %in% names(data)}){stop("please provide unique identifiers for genetic variants")}
@@ -57,6 +60,8 @@ format.data = function(data = NULL, data.path = NULL, TRAIT,
   
   ### Sample size
   if(!is.na(N) & N %in% names(data)){std.data = std.data %>% dplyr::mutate(n = data[, N])}else{std.data = std.data %>% dplyr::mutate(n = NULL)}
+  if(!is.na(NCASE) & NCASE %in% names(data)){std.data = std.data %>% dplyr::mutate(ncase = data[, NCASE])}else{std.data = std.data %>% dplyr::mutate(ncase = NULL)}
+  if(!is.na(NCTRL) & NCTRL %in% names(data)){std.data = std.data %>% dplyr::mutate(nctrl = data[, NCTRL])}else{std.data = std.data %>% dplyr::mutate(nctrl = NULL)}
   
   return(std.data)
 }

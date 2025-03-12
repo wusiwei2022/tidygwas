@@ -20,7 +20,9 @@
   Z = NA,
   P = NA,
   LOG10P = NA,
-  N = NA
+  N = NA,
+  NCASE = NA,
+  NCTRL = NA
 )
 }
 \arguments{
@@ -55,9 +57,13 @@
 \item{LOG10P}{column for the log10P to test beta = 0}
 
 \item{N}{column for the sample size in GWAS}
+
+\item{NCASE}{column for the number of cases in GWAS for case-control study}
+
+\item{NCTRL}{column for the number of controls in GWAS for case-control study}
 }
 \value{
-A post-formated data frame
+A post-formatted data frame
 }
 \description{
 Convert a GWAS Summary data into a standard format for downstream colocalization analysis
