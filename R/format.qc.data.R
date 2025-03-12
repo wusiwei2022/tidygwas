@@ -68,7 +68,11 @@ format.data = function(data = NULL, data.path = NULL, TRAIT,
 
 #' Quality Control the post-format standardized data
 #' @export
-qc.data = function(data, option = "biallelic.snp", id = "rsid"){
+#' @param data standardized GWAS summary data by function format.data with rsid, ea, and nea available.
+#' @param option to keep only biallelic variants or biallelic SNP.
+#' @param id the column name of RSID
+#' @return a post-qc GWAS summary
+qc.data = function(data, option = c("biallelic.variant", "biallelic.snp"), id = "rsid"){
   if(option == "biallelic.variant"){
     data = data[!{duplicated(data$rsid, fromLast = TRUE) | duplicated(data$rsid, fromLast = FALSE)},]}
   if(option == "biallelic.snp"){

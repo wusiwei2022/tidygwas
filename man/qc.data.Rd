@@ -4,7 +4,17 @@
 \alias{qc.data}
 \title{Quality Control the post-format standardized data}
 \usage{
-qc.data(data, option = "biallelic.snp", id = "rsid")
+qc.data(data, option = c("biallelic.variant", "biallelic.snp"), id = "rsid")
+}
+\arguments{
+\item{data}{standardized GWAS summary data by function format.data with rsid, ea, and nea available.}
+
+\item{option}{to keep only biallelic variants or biallelic SNP.}
+
+\item{id}{the column name of RSID}
+}
+\value{
+a post-qc GWAS summary
 }
 \description{
 Quality Control the post-format standardized data
