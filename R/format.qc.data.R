@@ -32,31 +32,31 @@ format.data = function(data = NULL, data.path = NULL, TRAIT,
   std.data = std.data %>% dplyr::mutate(trait = TRAIT, .before = "rsid")
   
   ### Coordinate 
-  if(!is.na(CHR) & CHR %in% names(data)){std.data = std.data %>% dplyr::mutate(chr = data[, CHR])}else{std.data = std.data %>% dplyr::mutate(chr = NA)}
-  if(!is.na(POS) & POS %in% names(data)){std.data = std.data %>% dplyr::mutate(pos = data[, POS])}else{std.data = std.data %>% dplyr::mutate(pos = NA)}
+  if(!is.na(CHR) & CHR %in% names(data)){std.data = std.data %>% dplyr::mutate(chr = data[, CHR])}else{std.data = std.data %>% dplyr::mutate(chr = NULL)}
+  if(!is.na(POS) & POS %in% names(data)){std.data = std.data %>% dplyr::mutate(pos = data[, POS])}else{std.data = std.data %>% dplyr::mutate(pos = NULL)}
   
   ### Effect allele and non-effect allele
-  if(!is.na(EA) & EA %in% names(data)){std.data = std.data %>% dplyr::mutate(ea = data[, EA])}else{std.data = std.data %>% dplyr::mutate(ea = NA)}
-  if(!is.na(NEA) & NEA %in% names(data)){std.data = std.data %>% dplyr::mutate(nea = data[, NEA])}else{std.data = std.data %>% dplyr::mutate(nea = NA)}
+  if(!is.na(EA) & EA %in% names(data)){std.data = std.data %>% dplyr::mutate(ea = data[, EA])}else{std.data = std.data %>% dplyr::mutate(ea = NULL)}
+  if(!is.na(NEA) & NEA %in% names(data)){std.data = std.data %>% dplyr::mutate(nea = data[, NEA])}else{std.data = std.data %>% dplyr::mutate(nea = NULL)}
   
   ### EAF
-  if(!is.na(EAF) & EAF %in% names(data)){std.data = std.data %>% dplyr::mutate(eaf = data[, EAF])}else{std.data = std.data %>% dplyr::mutate(eaf = NA)}
+  if(!is.na(EAF) & EAF %in% names(data)){std.data = std.data %>% dplyr::mutate(eaf = data[, EAF])}else{std.data = std.data %>% dplyr::mutate(eaf = NULL)}
   ### MAF
   if(!is.na(MAF) & MAF %in% names(data)){std.data = std.data %>% dplyr::mutate(maf = data[, MAF], .after = nea)}
   if(is.na(MAF) & !is.na(EAF) & EAF %in% names(data)){std.data = std.data %>% dplyr::mutate(maf = ifelse(eaf<0.5, eaf, 1-eaf))}
-  if(is.na(MAF) & {is.na(EAF) | !(EAF %in% names(data))}){std.data = std.data %>% dplyr::mutate(maf = NA)}
+  if(is.na(MAF) & {is.na(EAF) | !(EAF %in% names(data))}){std.data = std.data %>% dplyr::mutate(maf = NULL)}
   
   ### Beta, Se, and Z statistics
-  if(!is.na(BETA) & BETA %in% names(data)){std.data = std.data %>% dplyr::mutate(beta = data[, BETA])}else{std.data = std.data %>% dplyr::mutate(beta = NA)}
-  if(!is.na(SE) & SE %in% names(data)){std.data = std.data %>% dplyr::mutate(se = data[, SE])}else{std.data = std.data %>% dplyr::mutate(se = NA)}
-  if(!is.na(Z) & Z %in% names(data)){std.data = std.data %>% dplyr::mutate(z = data[, Z])}else{std.data = std.data %>% dplyr::mutate(z = NA)}
+  if(!is.na(BETA) & BETA %in% names(data)){std.data = std.data %>% dplyr::mutate(beta = data[, BETA])}else{std.data = std.data %>% dplyr::mutate(beta = NULL)}
+  if(!is.na(SE) & SE %in% names(data)){std.data = std.data %>% dplyr::mutate(se = data[, SE])}else{std.data = std.data %>% dplyr::mutate(se = NULL)}
+  if(!is.na(Z) & Z %in% names(data)){std.data = std.data %>% dplyr::mutate(z = data[, Z])}else{std.data = std.data %>% dplyr::mutate(z = NULL)}
   
   ### P value and log10 P value
-  if(!is.na(P) & P %in% names(data)){std.data = std.data %>% dplyr::mutate(p = data[, P])}else{std.data = std.data %>% dplyr::mutate(p = NA)}
-  if(!is.na(LOG10P) & LOG10P %in% names(data)){std.data = std.data %>% dplyr::mutate(log10p = data[, LOG10P])}else{std.data = std.data %>% dplyr::mutate(log10p = NA)}
+  if(!is.na(P) & P %in% names(data)){std.data = std.data %>% dplyr::mutate(p = data[, P])}else{std.data = std.data %>% dplyr::mutate(p = NULL)}
+  if(!is.na(LOG10P) & LOG10P %in% names(data)){std.data = std.data %>% dplyr::mutate(log10p = data[, LOG10P])}else{std.data = std.data %>% dplyr::mutate(log10p = NULL)}
   
   ### Sample size
-  if(!is.na(N) & N %in% names(data)){std.data = std.data %>% dplyr::mutate(n = data[, N])}else{std.data = std.data %>% dplyr::mutate(n = NA)}
+  if(!is.na(N) & N %in% names(data)){std.data = std.data %>% dplyr::mutate(n = data[, N])}else{std.data = std.data %>% dplyr::mutate(n = NULL)}
   
   return(std.data)
 }
