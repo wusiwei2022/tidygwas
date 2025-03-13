@@ -2,4 +2,6 @@
 
 export(extract.data)
 export(format.data)
+export(harmonise.coloc.data)
+export(harmonise.moloc.data)
 export(qc.data)
