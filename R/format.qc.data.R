@@ -32,7 +32,7 @@ format.data = function(data = NULL, data.path = NULL, TRAIT,
   std.data = data.frame(rsid = data[, RSID])
   
   ### Trait name
-  std.data = std.data %>% dplyr::mutate(trait = TRAIT, .before = "rsid")
+  std.data = std.data %>% dplyr::mutate(trait = TRAIT, .after = "rsid")
   
   ### Coordinate 
   if(!is.na(CHR) & CHR %in% names(data)){std.data = std.data %>% dplyr::mutate(chr = data[, CHR])}else{std.data = std.data %>% dplyr::mutate(chr = NULL)}
