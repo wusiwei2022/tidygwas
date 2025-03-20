@@ -2,8 +2,12 @@
 #' 
 #' Harmonise 2 GWAS summary data primarily for conventional coloc analysis.
 #' By default, the RSID, EA, and NEA will be referred to the first data set.
-#' @param data.a The first gwas summary data set you want to harmonise. Trait, rsid, ea, and nea must be available in the gwas summary while eaf is optional. 
-#' @param data.b The second gwas summary data set you want to harmonise. Trait, rsid, ea, and nea must be available in the gwas summary while eaf is optional. 
+#' @param data.a The 1st gwas summary data you want to harmonise. 
+#'               We recommend to format the gwas data with 'format.data' function in 'tidygwas' pcakge. 
+#'               Column trait, rsid, ea, and nea must be available in the gwas summary while eaf is optional. 
+#' @param data.b The 2nd gwas summary data you want to harmonise.
+#'               We recommend to format the gwas data with 'format.data' function in 'tidygwas' pcakge. 
+#'               Column trait, rsid, ea, and nea must be available in the gwas summary while eaf is optional. 
 #' @return A harmonised data with 2 gwas summary data.
 #' @export
 harmonise.coloc.data = function(data.a, data.b){
@@ -32,7 +36,8 @@ harmonise.coloc.data = function(data.a, data.b){
   coloc.data.1 = coloc.data.1 %>% mutate(ea = ea.a, nea = nea.a, .after = rsid) %>% select(-c("ea.a", "nea.a", "ea.b", "nea.b"))
   ### subset of data where effect allele in trait 1 matches non-effect allele in trait b and non-effect allele in trait 1 matches effect allele in trait 2  
   coloc.data.2 = coloc.data %>% filter(ea.a == nea.b & nea.a == ea.b)
-  coloc.data.2 = coloc.data.2 %>% mutate(beta.b = - beta.b)
+  if("beta.b" %in% names(coloc.data.2)){coloc.data.2 = coloc.data.2 %>% mutate(beta.b = - beta.b)}
+  if("z.b" %in% names(coloc.data.2)){coloc.data.2 = coloc.data.2 %>% mutate(z.b = - z.b)}
   if("eaf.b" %in% names(coloc.data.2)){coloc.data.2 = coloc.data.2 %>% mutate(eaf.b = 1-eaf.b)}
   coloc.data.2 = coloc.data.2 %>% mutate(ea = ea.a, nea = nea.a, .after = rsid) %>% select(-c("ea.a", "nea.a", "ea.b", "nea.b"))
   ### combine harmonised data

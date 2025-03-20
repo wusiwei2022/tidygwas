@@ -7,9 +7,13 @@
 harmonise.coloc.data(data.a, data.b)
 }
 \arguments{
-\item{data.a}{The first gwas summary data set you want to harmonise. Trait, rsid, ea, and nea must be available in the gwas summary while eaf is optional.}
+\item{data.a}{The 1st gwas summary data you want to harmonise.
+We recommend to format the gwas data with 'format.data' function in 'tidygwas' pcakge.
+Column trait, rsid, ea, and nea must be available in the gwas summary while eaf is optional.}
 
-\item{data.b}{The second gwas summary data set you want to harmonise. Trait, rsid, ea, and nea must be available in the gwas summary while eaf is optional.}
+\item{data.b}{The 2nd gwas summary data you want to harmonise.
+We recommend to format the gwas data with 'format.data' function in 'tidygwas' pcakge.
+Column trait, rsid, ea, and nea must be available in the gwas summary while eaf is optional.}
 }
 \value{
 A harmonised data with 2 gwas summary data.
