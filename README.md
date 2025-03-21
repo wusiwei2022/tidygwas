@@ -45,7 +45,7 @@ There are also cleaned data available in the package:
 data(pQTL_BRAP)
 data(eQTL_BRAP)
 data(SBP_BRAP)
-data(CAD_BRAP_RAW)
+data(CAD_BRAP)
 ```
 
 Harmonize for either conventional Bayesian Colocalization or multi-trait colocalization:
