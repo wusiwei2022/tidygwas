@@ -89,7 +89,7 @@
 # save(pQTL_BRAP, file = "../data/pQTL_BRAP.rda")
 
 # # eQTL data
-# eQTL_BRAP_RAW = read.table(pipe("zcat /rds/general/project/medbio-epiukb-archive-2018/live/pickup/Siwei/GWAS_Summary/eQTLGen/02_Data/01_RawData/eQTLGene_cis_eQTLs_full_2018.txt.gz | awk 'NR==1 || ($8==\"ENSG00000089234\" && $9==\"BRAP\")'"), header = TRUE)
+# eQTL_BRAP_RAW = fread("/rds/general/project/medbio-epiukb-archive-2018/live/pickup/Siwei/GWAS_Summary/eQTLGen/02_Data/02_CleanData/eQTLGen_ciseQTL_2018/ENSG00000089234_BRAP.txt", header = TRUE)
 # save(eQTL_BRAP_RAW, file = "../data/eQTL_BRAP_RAW.rda")
 # eQTL_BRAP = format.data(data = eQTL_BRAP_RAW,
 #                         TRAIT = "BRAP eQTL",
